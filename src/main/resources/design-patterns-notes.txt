@@ -1,0 +1,239 @@
+
+									Design Patterns:
+									****************
+
+-> Design Patterns are the best pratices, which provides solution for common problems.
+
+- Design patterns are the best practices that can be used to develop well-tested solutions.
+
+- Design patterns are independent of any programming languages 
+
+- Design patterns are used to solve common object-oriented design problems
+
+- Design patterns are reusable and can be used by multiple projects.
+
+- Design patterns provide transparency to the application design.
+
+- Using Design patterns, we can develop programs that are more efficient, flexible, maintainable, and reusable.
+
+- Design patterns are already well-tested and proved so that we can use them without any worries.
+
+-> Gang Of Four People (GOF) divided Design Patterns into 3 types
+
+		1) Creational Design Patterns
+
+		2) Structural Design Patterns
+
+		3) Behavioural Design Patterns
+
+When to Use Design Patterns:
+*****************************
+- We will use Design Patterns during the Analysis and Requirement Phase of SDLC.
+- It provides more information to Requirement phase.
+- Java Internally supports Design Patterns.
+
+
+								|----> Core Java Design Patterns 	
+Design Patterns  -------------->|
+								|----> JEE Design Patterns
+
+
+								|---> Creational Design Pattern
+Core Java Design Patterns ----->|---> Structural Design Pattern
+								|---> Behavioural Design Pattern
+
+Creational Design Pattern :
+===========================
+- Mainly involved with the creation of Objects.
+- Singleton, Factory, Abstract Factory Desgin Patterns..etc are examples of Creational Design Patterns.
+
+Structural Design Pattern :
+===========================
+- Mainly involved to Create the Structure of the Class.
+- Adapter, Bridge Patterns..etc are examples of Structural Design Patterns.
+
+Behavioural Design Pattern :
+===========================
+- Provides better Interaction between the Objects along with the Flexibility for Easily Extending the Implementation.
+Ex: Strategy Design Pattern
+
+								|---> Singleton Design Pattern
+								|---> Factory Design Pattern
+Creational Design Pattern ----->|---> Builder Design Pattern
+								|---> Prototype Design Pattern
+								|---> Abstract Factory Design Pattern
+
+
+Singleton Design Pattern : 
+**************************
+- Singleton Design Pattern is type of a Creational Design Pattern.
+- In Singleton Design Pattern only one instance of class is present in the JVM.
+- Singleton Design Pattern Allows to create only one object/Instance and provides global point of access to that Instance.
+
+Advanatages:
+------------
+- For any Requirement we re-use the same object only.
+- Which Saves Memory and Improves the Performance.
+
+When to use Singleton Design Pattern:
+*************************************
+-> Singleton Pattern can be used when we need exactly one instance of the object. 
+-> They are usually used for logging, database connections, caching.
+
+
+Example Code:
+*************
+
+class SingletonObject {
+   //create an object of SingletonObject on Request
+   private static SingletonObject instance = null;
+ 
+   //private constructor so that we cannot instantiate the class
+   private SingletonObject(){}
+ 
+   //returns the only available object
+   public static SingletonObject getInstance(){
+	if(instance == null){
+		instance = new SingletonObject();
+	}
+      return instance;
+   }
+ 
+   public void printMessage(){
+      System.out.println("This is Singleton object...!");
+   }
+}
+ 
+public class Main {
+   public static void main(String[] args) {
+ 
+      //illegal statement because constructor is private
+      //Compile Time Error: The constructor SingletonObject() is not visible
+      //SingletonObject object = new SingletonObject();
+ 
+      //call getInstance to retrieve the object available from the class
+      SingletonObject object1 = SingletonObject.getInstance();
+      SingletonObject object2 = SingletonObject.getInstance();
+ 
+      System.out.println(object1.hashCode());
+      System.out.println(object2.hashCode());
+
+      //show the message
+      object.printMessage();
+   }
+}
+
+==========================================================================
+Singleton class :
+-----------------
+- For any java class if we are allowed to create only one object such type of class is   called 'Singleton' class.
+Ex: Runtime, ServiceLocator, BusinessDelegate,..etc
+
+Advantage of 'Singleton' class :
+--------------------------------
+- If several people have same requirement then it is not recommended to create the seperate object for every requirement 
+
+- We have to create only one object and we can re-use same object for every similar requirement so that performance and memory utilizations will be improved.
+
+- This is the central idea of singleton classes.
+
+Example: 
+`````````
+Runtime r1 = Runtime.getRuntime();
+Runtime r2 = Runtime.getRuntime();
+Runtime r100 = Runtime.getRuntime();
+
+How to create our own singleton classes :
+-----------------------------------------
+- We can create our own singleton classes for these we have to use private constructor and private static variable and public factory method.
+
+Approach-1:
+***********
+
+class Test{
+
+  private static Test t = new Test();
+  
+  private Test(){}
+
+  public static Test getTest(){
+    return t;
+  }
+}
+
+Test t1 = Test.getTest();
+Test t2 = Test.getTest();
+Test t3 = Test.getTest();
+.
+.
+Test t100 = Test.getTest();
+
+[ Note: Re-using single object(t) only ]
+
+=> Runtime class is internally implemented by using this approach.
+
+Approach-2:
+***********
+
+class Test{
+ 
+  private static Test t = null;
+ 
+  private Test() {}
+
+  public static Test getTest() {
+
+	   if(t == null){
+	     t = new Test();
+	   }
+	return t;
+  }
+}
+
+Test t1 = Test.getTest();
+Test t2 = Test.getTest();
+Test t3 = Test.getTest();
+.
+.
+Test t100 = Test.getTest();
+
+private Constructors main use is to create our own singleton classes.
+=====================================================================
+
+Q> Class is not final but we are allowed to create the Child classes How it is possible?
+
+Ans: Declare every constructor as private
+
+==========================================================================
+
+Factory DesignPattern :
+***********************
+- The factory pattern is a type of Creational Design Pattern.
+- In Factory DesignPattern, we create object without exposing the object creation logic to the client and refer to newly created Object using a common interface.
+
+When to Use FDP :
+*****************
+- We use Factory Design Pattern if We don't know the enough information to create Object And If we don't know the Dependencies and Type of the Objects.
+
+==========================================================================
+
+Strategy Design Pattern:
+************************
+
+-> Using this strategy design pattern we can choose implementation or algorithm at runtime.
+-> It comes under Structural Design Pattern.
+
+Strategy Design Pattern Principles: 
+-----------------------------------
+
+1) Favour Composition over inheritence
+
+2) Always code to interfaces instead of concrete implementations
+
+3) Code Should be open for extension and should be closed for modification.
+
+When to Use Strategy Design Pattern:
+************************************
+-> When we have a method that behaves differently based on the different inputs, then we will use strategy design pattern.
+
+
